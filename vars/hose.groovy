@@ -1,9 +1,9 @@
 def call(Closure body = {}) {
-
-    if (!env.BOOTSTRAP_LOADED) {
-            env.BOOTSTRAP_LOADED = 'true'
-            library "libpipelines@test/dynamic-library"
-            executor(body)
-    }  
-    
+    def folder = env.JOB_NAME.split('/')[0].toLowerCase()
+    if (folder == 'egeo') {
+        library "libpipelines@test/dynamic-library"
+    } else {
+        library "libpipelines"
+    }
+    executor(body)
 }
