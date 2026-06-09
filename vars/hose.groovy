@@ -3,7 +3,7 @@ def call(Closure body = {}) {
     if (folder == 'egeo') {
         library "libpipelines@test/dynamic-library"
     } else {
-        library "libpipelines"
+        library "libpipelines@test/dynamic-library"
     }
     executor(body)
 }
