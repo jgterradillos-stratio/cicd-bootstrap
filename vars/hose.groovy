@@ -1,4 +1,4 @@
 def call(Closure body = {}) {
-    library "libpipelines"
+    library "libpipelines@test/dynamic-library"
     hose(body)
 }
