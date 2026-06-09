@@ -5,5 +5,5 @@ def call(Closure body = {}) {
     } else {
         library "libpipelines@test/dynamic-library"
     }
-    executor(body)
+    hoseExecutor(body)
 }
