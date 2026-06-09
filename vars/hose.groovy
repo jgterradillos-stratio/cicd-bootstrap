@@ -1,4 +1,9 @@
 def call(Closure body = {}) {
-    library "libpipelines@test/dynamic-library"
-    hose(body)
+
+    if (!env.BOOTSTRAP_LOADED) {
+            env.BOOTSTRAP_LOADED = 'true'
+            library "libpipelines@test/dynamic-library"
+            executor(body)
+    }  
+    
 }
