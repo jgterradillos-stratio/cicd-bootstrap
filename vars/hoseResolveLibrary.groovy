@@ -16,7 +16,7 @@ def loadBootstrapFile() {
 
 def call() {
     def bootstrap = loadBootstrapFile()
-    def folder = env.JOB_NAME.split('/')[0]
-    def libraryRef = bootstrap.find { lib, folders -> folders.contains(folder) }?.key
+    def folder = env.JOB_NAME.split('/')[0].toLowerCase()
+    def libraryRef = bootstrap.find { lib, folders -> folders*.toLowerCase().contains(folder) }?.key
     return libraryRef ?: 'libpipelines@feat/hose-executor'
 }
