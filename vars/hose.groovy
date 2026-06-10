@@ -3,8 +3,10 @@ def call(Closure body = {}) {
     // Plugin: ConfigFileProvider  Method: configFileProvider
     // Plugin: ConfigFileProvider  Method: configFile
     def bootstrap
-    configFileProvider([configFile(fileId: 'libpipeline-bootstrap', variable: 'jsonFile')]) {
-        bootstrap = readJSON file: jsonFile
+    node {
+        configFileProvider([configFile(fileId: 'libpipeline-bootstrap', variable: 'jsonFile')]) {
+            bootstrap = readJSON file: jsonFile
+        }
     }
 
     echo "[hose] Bootstrap config loaded: ${bootstrap}"
