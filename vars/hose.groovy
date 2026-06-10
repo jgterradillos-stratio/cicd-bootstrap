@@ -1,14 +1,14 @@
+@NonCPS
+def loadBootstrap() {
+    def content = Jenkins.instance
+        .getExtensionList('org.jenkinsci.plugins.configfiles.GlobalConfigFiles')[0]
+        .getById('libpipeline-bootstrap')
+        .content
+    new groovy.json.JsonSlurperClassic().parseText(content)
+}
+
 def call(Closure body = {}) {
-
-    // Plugin: ConfigFileProvider  Method: configFileProvider
-    // Plugin: ConfigFileProvider  Method: configFile
-    def bootstrap
-    node {
-        configFileProvider([configFile(fileId: 'libpipeline-bootstrap', variable: 'jsonFile')]) {
-            bootstrap = readJSON file: jsonFile
-        }
-    }
-
+    def bootstrap = loadBootstrap()
     echo "[hose] Bootstrap config loaded: ${bootstrap}"
 
     def folder = env.JOB_NAME.split('/')[0].toLowerCase()
